@@ -20,7 +20,7 @@
 # average of each variable for each activity and each subject.
 
 ## =================================================================================
-## Step 1. Merges the training and the test sets to create one data set.
+## Step 1. Merge the training and the test sets to create one data set.
 # Training set
 x_train <- read.table('./UCI HAR Dataset/train/X_train.txt')
 y_train <- read.table('./UCI HAR Dataset/train/Y_train.txt')
@@ -37,7 +37,7 @@ y_data <- rbind(y_train, y_test)
 subject_data <- rbind(subject_train, subject_test)
 
 ## =================================================================================
-# Step 2. Extracts only the measurements on the mean and standard deviation for each 
+# Step 2. Extract only the measurements on the mean and standard deviation for each 
 # measurement. 
 features <- read.table('./UCI HAR Dataset/features.txt')
 mean <- grep('mean\\(\\)',features[,2])
@@ -46,7 +46,7 @@ meanANDstdIndex <- union(mean, std)
 x_data <- x_data[,meanANDstdIndex]
 
 ## =================================================================================
-# Step 3. Uses descriptive activity names to name the activities in the data set.
+# Step 3. Use descriptive activity names to name the activities in the data set.
 activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt")
 activity_labels[, 2] <- gsub("_", " ", activity_labels[, 2])
 activity_labels[, 2] <- tolower(activity_labels[, 2])
@@ -57,7 +57,7 @@ activityLabels <- activity_labels[y_data[, 1], 2]
 y_data[, 1] <- activityLabels
 
 ## =================================================================================
-# Step 4. Appropriately labels the data set with descriptive variable names. 
+# Step 4. Appropriately label the data set with descriptive variable names. 
 names(x_data) <- gsub("mean", "Mean", features[meanANDstdIndex, 2])
 names(x_data) <- gsub("std", "Std", names(x_data))
 names(x_data) <- gsub("\\(\\)", "", names(x_data))
@@ -67,7 +67,7 @@ names(subject_data) <- "Subject"
 tidy_data <- cbind(subject_data, y_data, x_data)
 
 ## =================================================================================
-# Step 5. From the data set in step 4, creates a second, independent tidy data set 
+# Step 5. From the data set in step 4, create a second, independent tidy data set 
 # with the average of each variable for each activity and each subject.
 usubject <- sort(unique(subject_data[,1]))
 nsubject <- length(usubject)
