@@ -1,2 +1,2 @@
-# Getting_and_Cleaning_Data
-Coursera Getting and Cleaning Data course
+# Getting_and_Cleaning_Data-Course_Project
+Course project for Coursera Getting and Cleaning Data
